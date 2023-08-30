@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+#This program finds peaks in the amount of playable notes. Peaks are where the ideal RPM's for the fan harp is.
+#They can be calculated from one peak by multiplying the RPM by 1.05946 (The same as the multiple between )
+#Still not sure how to calculate the first peak without brute forcing it
+
 ####USER INPUT####
 amountOfNotes=80 ## Starting from A0, the amount of semitones up you want to include in the chart
 
@@ -11,14 +15,17 @@ names = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'] # Base note names
 notesnames = ['A0'] # Holds all note names
 octave = 0
 for i in range(1,amountOfNotes):
-    notes.append(notes[-1]*1.05946)
-    if(names[i%12]=='C'):octave+=1
+    notes.append(notes[-1]*1.05946) #Equal temperament
+    if(names[i%12]=='C'):octave+=1 #12 / octave
     notesnames.append(names[i%12]+str(octave))
 
 #Maths
 #rpm = 1000
 #rps = 1
 compatibility = [[],[]]
+red=[0.35,0.96,1]
+green=[0.80,0.66,1]
+blue=[0.98,0.72,1]
 for rpm in range(1,1500):
     rps = rpm/60
     compatibility[0].append(rpm)
@@ -41,14 +48,23 @@ for rpm in range(1,1500):
         if(hzOffset<allowedDissonance):
             #finalNotes.append('Frequency: '+str(round(notes[i],2))+' | Note: '+notesnames[i]+' | Dissonance: '+str(hzOffset)+' | Holes: '+str(holes[i]))
             compatibility[1][rpm-1]+=1
-            plt.plot([rpm],[notes[i]],marker='.')
+            plt.plot([rpm],[notes[i]],marker='.',color=(red[i%3],green[i%3],blue[i%3]))
 
 #for ln in finalNotes: # Display end notes
 #    print(ln)
 
 #xpoints = range(0,40)
 #ypoints = hzOffsets
-
-plt.plot(compatibility[0],compatibility[1],marker='*')
+plt.xlabel('RPM')
+plt.ylabel('Hz')
+#ax = plt.axes()
+#ax.set_facecolor('black')
+plt.plot(compatibility[0],compatibility[1],marker='*',color='pink')
 plt.yscale(value='log')
 plt.show()
+
+
+'''
+A lot of code in here is probably unnecessary. This was just to generate the graph to get some visual representation of what works best.
+The spreadsheet contains a lot more information on how to tune, but this generates some necessary numbers for the spreadsheet.
+'''
