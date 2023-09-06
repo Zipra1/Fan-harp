@@ -8,6 +8,9 @@ The spreadsheet is mostly useful for:
 - If you want more notes on the disk
 - Changing tightness of tuning
 
+Important notes before I have a full tuning manual:
+- The RPM can be halved if the number of holes are doubled. (or 1/3 the speed if holes are tripled, you get the idea)
+
 # Column descriptions
 Note HZ: Just a list of all notes in Hz
 
