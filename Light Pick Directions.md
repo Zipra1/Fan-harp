@@ -4,7 +4,7 @@ However, I believe to have found a solution that works Good Enough for now using
 It is not perfect, but it does output sound and allows fairly accurate note selection.
 
 ## Wiring
-Not much detail for now, might add a diagram eventually. For now, this is still very rough.
+![](Light_pick_wiring_guide.png)
 
 [This](https://www.amazon.ca/gp/product/B07D3PHQT8/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) is the sensor I used for my pick. Many alternatives are available, they're all the same.
 
